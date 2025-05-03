@@ -1,6 +1,6 @@
 from airflow.models import DAG
 from airflow.operators.python_operator import PythonOperator
-from airflow.operators import EmptyOperator
+from airflow.operators.dummy import DummyOperator
 from airflow.utils.dates import days_ago
 from datetime import datetime, timedelta
 
@@ -26,10 +26,10 @@ with DAG(
     tags=['hello_world'],
 ) as dag:
     # define the task
-    start = EmptyOperator(
+    start = DummyOperator(
         task_id='start'
         )
-    end = EmptyOperator(
+    end = DummyOperator(
         task_id='end'
         )
     hello_task = PythonOperator(
